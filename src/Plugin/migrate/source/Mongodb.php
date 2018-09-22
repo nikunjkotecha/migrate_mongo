@@ -106,10 +106,10 @@ class Mongodb extends SourcePluginBase implements ContainerFactoryPluginInterfac
    * @param mixed $data
    *   Array / Object / Final value.
    *
-   * @return array
-   *   Data as array from objects.
+   * @return mixed
+   *   Data as array from objects, scalar value for final level.
    */
-  public function getDataAsArray($data): array {
+  public function getDataAsArray($data) {
     if (is_object($data)) {
       return $this->getDataAsArray($data->getArrayCopy());
     }
