@@ -97,16 +97,20 @@ class Mongodb extends SourcePluginBase implements ContainerFactoryPluginInterfac
       ->find([])
       ->toArray();
 
-    $result = [];
+    return $this->getDataAsArray($rows);
+  }
 
-    /** @var \MongoDB\Model\BSONDocument $row */
-    foreach ($rows as $row) {
-      $city = $row->getArrayCopy();
-      $city['loc'] = $city['loc']->getArrayCopy();
-      $result[] = $city;
+  public function getDataAsArray($data) {
+    if (is_object($data)) {
+      return $this->getDataAsArray($data->getArrayCopy());
+    }
+    elseif (is_array($data)) {
+      foreach ($data as $id => $value) {
+        $data[$id] = $this->getDataAsArray($value);
+      }
     }
 
-    return $result;
+    return $data;
   }
 
   /**
