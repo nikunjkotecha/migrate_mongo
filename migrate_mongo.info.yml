@@ -1,0 +1,10 @@
+type: module
+name: Migrate Mongo
+description: 'Migrate city data from mongo to custom entity.'
+package: Migrate
+core: 8.x
+dependencies:
+  - drupal:migrate
+  - drupal:mongodb
+  - migrate_plus:migrate_plus
+

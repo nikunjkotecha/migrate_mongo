@@ -1,0 +1,34 @@
+uuid: e81fea43-f8d2-485c-9a24-7684e477ae2a
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - migrate_mongo
+      - entity_city
+id: city
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: qed
+label: City
+source:
+  plugin: mongodb
+  alias: qed
+  collection: City
+  fields:
+    _id: 'ID'
+    city: 'City'
+    pop: 'Zip Code'
+    state: 'State'
+    loc: 'Location'
+destination:
+  plugin: entity:city
+process:
+  city_id: _id
+  title: city
+  pop: pop
+  state: state
+  loc_latitude: loc/0
+  loc_longitude: loc/1
