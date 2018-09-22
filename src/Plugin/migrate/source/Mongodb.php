@@ -100,7 +100,16 @@ class Mongodb extends SourcePluginBase implements ContainerFactoryPluginInterfac
     return $this->getDataAsArray($rows);
   }
 
-  public function getDataAsArray($data) {
+  /**
+   * Recursive function to get data as array.
+   *
+   * @param mixed $data
+   *   Array / Object / Final value.
+   *
+   * @return array
+   *   Data as array from objects.
+   */
+  public function getDataAsArray($data): array {
     if (is_object($data)) {
       return $this->getDataAsArray($data->getArrayCopy());
     }
